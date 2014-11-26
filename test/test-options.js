@@ -18,6 +18,10 @@ describe('Karma generator options test', function () {
       'test-files': 'tests/spec/*.js',
       'exclude-files': 'exclude/files.js',
       'plugins': 'qunit,jazzy',
+      'preprocessors': {
+        '**/*.js': 'coverage',
+        '**/*.html': 'ng-html2js'
+      },
 
       'template-path': '../test',
       'config-path': 'testing',
@@ -32,6 +36,7 @@ describe('Karma generator options test', function () {
           config['config-path'],
           config['config-file']
         ));
+        var preprocessorsKeys = Object.keys(test.preprocessors);
         assert.equal(config['base-path'], test['base-path']);
         assert.equal(config['test-framework'], test.frameworks);
         assert.equal(config['web-port'], test.port);
@@ -47,6 +52,9 @@ describe('Karma generator options test', function () {
           ),
           test.plugins
         );
+        preprocessorsKeys.forEach(function(key) {
+          assert.equal(test.preprocessors[key], config.preprocessors[key]);
+        });
         assert.deepEqual(
           [].concat(
             config['bower-components'].split(',').map(function(component) {
