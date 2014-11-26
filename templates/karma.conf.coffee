@@ -46,7 +46,7 @@ module.exports = (config) ->
 
     colors: true
 
-    preprocessors: '**/*.coffee': ['coffee']
+    preprocessors: <%= JSON.stringify(options["preprocessors"]) %>
 
     # Uncomment the following lines if you are using grunt's server to run the tests
     # proxies: '/': 'http://localhost:9000/'

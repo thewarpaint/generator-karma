@@ -82,6 +82,12 @@ module.exports = yeoman.generators.Base.extend({
     });
     this.options['exclude-files'] = notEmpty(this.options['exclude-files']);
 
+    this.option('preprocessors', {
+      type: Object,
+      desc: 'List of preprocessors and the files they will ingest',
+      defaults: {}
+    });
+
     var files = this.options['bower-components'].map(function (component) {
       return this.options['bower-components-path'] + (
         this.options['bower-components-path'].slice(-1) === '/' ? '' : '/'
@@ -115,6 +121,7 @@ module.exports = yeoman.generators.Base.extend({
 
     if (this.options.coffee) {
       this.options.plugins.push('karma-coffee-preprocessor');
+      this.options.preprocessors['**/*.coffee'] = ['coffee'];
     }
 
     this.option('travis', {

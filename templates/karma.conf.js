@@ -44,6 +44,8 @@ module.exports = function(config) {
 
     colors: true,
 
+    preprocessors: <%= JSON.stringify(options["preprocessors"]) %>,
+
     // level of logging
     // possible values: LOG_DISABLE || LOG_ERROR || LOG_WARN || LOG_INFO || LOG_DEBUG
     logLevel: config.LOG_INFO,
